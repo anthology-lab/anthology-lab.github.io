@@ -90,7 +90,7 @@ mark { background: linear-gradient(transparent 55%, var(--mark) 55%); color: inh
 .cols { display: grid; grid-template-columns: 290px 1fr; gap: 44px; }
 @media (max-width: 860px) { .cols { grid-template-columns: 1fr; gap: 28px; } }
 .avatar { width: 88px; height: 88px; image-rendering: pixelated; display: block; border-radius: 50%; box-shadow: 0 0 0 2px var(--line), 0 10px 22px -12px rgba(5, 10, 30, .6); }
-.name { font-family: var(--serif); font-weight: 400; font-size: 52px; line-height: 1; margin: 18px 0 14px; }
+.name { font-family: var(--serif); font-weight: 400; font-size: 46px; white-space: nowrap; line-height: 1; margin: 18px 0 14px; }
 .bio { color: var(--muted); font: 12.5px/1.7 var(--mono); margin: 0 0 20px; }
 .search input { width: 100%; font: 13px var(--mono); color: var(--text); background: transparent; border: 1px solid var(--line); padding: 10px 12px; outline: none; margin-top: 10px; }
 .search input:focus { border-color: var(--accent); }
