@@ -45,18 +45,8 @@
     [...sels, sort].filter(Boolean).forEach(s => s.addEventListener('change', run));
   }
 
-  // ---------- commonplace: one quote at random ----------
-  const feat = document.getElementById('featured');
-  if (feat && window.ANTH_QUOTES && ANTH_QUOTES.length) {
-    let last = -1;
-    const show = () => {
-      let i; do { i = Math.floor(Math.random() * ANTH_QUOTES.length); } while (ANTH_QUOTES.length > 1 && i === last);
-      last = i; const q = ANTH_QUOTES[i];
-      feat.querySelector('.fq').textContent = q.q; feat.querySelector('.fa').textContent = q.a;
-      feat.querySelector('.fopen').href = q.h;
-    };
-    document.getElementById('fnext').onclick = show; show();
-  }
+  // ---------- ¶ label on tap (touch screens have no hover) ----------
+  document.querySelectorAll('.sym[tabindex]').forEach(s => s.addEventListener('click', ev => { ev.preventDefault(); s.classList.toggle('show'); }));
 
   // ---------- spoilers: one gate over the whole note ----------
   document.querySelectorAll('[data-gate]').forEach(b => b.addEventListener('click', () => b.closest('.gatebox').classList.add('open')));

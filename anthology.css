@@ -151,13 +151,6 @@ mark { background: linear-gradient(transparent 55%, var(--mark) 55%); color: inh
 .ldate { display: block; font: 11px var(--mono); color: var(--muted); margin-top: 6px; }
 
 /* commonplace */
-.featured { border-radius: 22px; padding: 30px 32px 20px; margin-bottom: 28px; background: linear-gradient(135deg, #0b1530, #173a6b 60%, #0f8f84); color: #fff; }
-.featured .fq { font: 16px/1.8 var(--mono); }
-.featured .fa { font: 12px var(--mono); margin-top: 12px; opacity: .85; }
-.featured .fa::before { content: "— "; }
-.featured .factions { display: flex; gap: 12px; align-items: center; justify-content: flex-end; margin-top: 14px; }
-.featured a, .featured a:visited { color: #fff; font: 12px var(--mono); text-decoration: underline; }
-.featured .chip-btn { color: #fff; border-color: rgba(255, 255, 255, .6); }
 .part { font: 500 13px var(--mono); margin: 34px 0 16px; padding-top: 18px; border-top: 1px solid var(--line); }
 .part::first-letter { color: var(--sec, var(--accent)); }
 .part .n { color: var(--muted); font-weight: 400; }
@@ -219,3 +212,11 @@ mark { background: linear-gradient(transparent 55%, var(--mark) 55%); color: inh
 /* narrow screens: nothing scrolls sideways */
 .prose, .facts, .results { overflow-wrap: anywhere; }
 @media (max-width: 640px) { .title { font-size: 32px; } .banner { height: 110px; } .name { font-size: 42px; } .grid { grid-auto-rows: 110px; } }
+
+/* ¶ has a reflection, as in soul; label on hover and on tap */
+.sym { position: relative; color: var(--sec, var(--c-commonplace, #14b8a6)); font: .9em var(--mono); cursor: help; outline: none; }
+.sym::after { content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); white-space: nowrap;
+  font: 11px var(--mono); color: #fff; background: #0b1530; padding: 4px 8px; opacity: 0; pointer-events: none; transition: opacity .12s ease; z-index: 3; }
+.sym:hover::after, .sym:focus::after, .sym.show::after { opacity: 1; }
+h1 .sym { font-size: 18px; vertical-align: .35em; margin-left: 6px; }
+.legend { font: 11px var(--mono); color: var(--muted); margin: 6px 0 4px; }
