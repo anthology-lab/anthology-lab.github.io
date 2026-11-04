@@ -220,3 +220,6 @@ mark { background: linear-gradient(transparent 55%, var(--mark) 55%); color: inh
 .sym:hover::after, .sym:focus::after, .sym.show::after { opacity: 1; }
 h1 .sym { font-size: 18px; vertical-align: .35em; margin-left: 6px; }
 .legend { font: 11px var(--mono); color: var(--muted); margin: 6px 0 4px; }
+
+/* filters hide items with the hidden attribute; display rules above (.item flex, .agroup...) must not override it */
+[hidden] { display: none !important; }
