@@ -17,6 +17,15 @@
     const text = bar.querySelector('.f-text'), sort = bar.querySelector('.f-sort');
     const sels = [...bar.querySelectorAll('select[data-key]')];
     const empty = document.querySelector('.empty');
+    // commonplace.html?book=<slug>, from a book page: only the quotes taken from that book
+    const fb = bar.querySelector('.f-book');
+    let book = new URLSearchParams(location.search).get('book') || '';
+    if (fb && book) {
+      const titles = JSON.parse(fb.dataset.titles || '{}');
+      fb.innerHTML = `from <em>${esc(titles[book] || book)}</em> <button type="button" aria-label="show all quotes">×</button>`;
+      fb.hidden = false;
+      fb.querySelector('button').onclick = () => { book = ''; fb.hidden = true; history.replaceState(null, '', location.pathname); run(); };
+    }
     const run = () => {
       const w = text.value.trim().toLowerCase();
       let shown = 0;
@@ -26,7 +35,7 @@
         items.forEach(it => {
           const group = it.closest('.agroup');
           const hay = (it.textContent + ' ' + (group ? group.querySelector('.aname').textContent : '')).toLowerCase();
-          const ok = (!w || hay.includes(w)) && sels.every(s => !s.value || (s.dataset.key === 'tag' ? it.dataset.tag.includes('|' + s.value + '|') : it.dataset[s.dataset.key] === s.value));
+          const ok = (!w || hay.includes(w)) && (!book || (it.dataset.book || '').includes('|' + book + '|')) && sels.every(s => !s.value || (s.dataset.key === 'tag' ? it.dataset.tag.includes('|' + s.value + '|') : it.dataset[s.dataset.key] === s.value));
           it.hidden = !ok; if (ok) { shown++; here++; }
         });
         // commonplace: hide an author with no quote left, and a part with nothing in it
@@ -41,6 +50,7 @@
       });
       if (empty) empty.hidden = shown > 0;
     };
+    if (book) run();
     text.addEventListener('input', run);
     [...sels, sort].filter(Boolean).forEach(s => s.addEventListener('change', run));
   }

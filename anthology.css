@@ -127,6 +127,10 @@ mark { background: linear-gradient(transparent 55%, var(--mark) 55%); color: inh
 .filters input { flex: 1 1 220px; font: 13px var(--mono); color: var(--text); background: transparent; border: 1px solid var(--line); padding: 7px 10px; outline: none; }
 .filters input:focus { border-color: var(--accent); }
 .filters select { font: 12.5px var(--mono); color: var(--text); background: var(--card-bg); border: 1px solid var(--line); padding: 7px 8px; max-width: 100%; }
+.filters .f-book { display: inline-flex; align-items: center; gap: 8px; font: 12.5px var(--mono); background: var(--chip-bg); color: var(--chip-text); padding: 7px 10px; }
+.filters .f-book[hidden] { display: none; }
+.filters .f-book button { font: inherit; color: inherit; background: none; border: 0; padding: 0 2px; cursor: pointer; }
+.from-book { font: 13px var(--mono); margin-top: 34px; }
 .empty { color: var(--muted); }
 
 /* covers first: books and images */
@@ -223,3 +227,11 @@ h1 .sym { font-size: 18px; vertical-align: .35em; margin-left: 6px; }
 
 /* filters hide items with the hidden attribute; display rules above (.item flex, .agroup...) must not override it */
 [hidden] { display: none !important; }
+
+/* raw passages from the book, folded at the end of the page */
+.fold { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 14px; }
+.fold > summary { cursor: pointer; font: 13px var(--mono); color: var(--accent); list-style: none; }
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary::before { content: '+ '; }
+.fold[open] > summary::before { content: '− '; }
+.fold[open] > summary { margin-bottom: 14px; }
